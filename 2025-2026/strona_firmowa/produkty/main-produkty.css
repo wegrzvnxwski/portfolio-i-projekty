@@ -1,0 +1,556 @@
+html, body{
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    font-family: 'Google Sans Flex', sans-serif;
+    background-color: #f4f4f4; /* ten kolor nie jest tak jasny tak totalna biel, jest przyjemniejszy dla oczu */
+    color: #333;
+    height:100%;
+}
+
+.layout-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* CZĘŚĆ NAWIGACYJNA */
+/* .scrolled jest aktywowane przez JS, patrz layout-produkty.js */
+
+/* BAZA – wspólne dla wszystkich szerokości */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #f4f4f4;
+  padding: 10px 30px;
+  box-shadow: 0 5px 4px rgba(0,0,0,0.1);
+}
+
+nav img{
+  width:191px;
+  height:70px;
+}
+
+nav.scrolled {
+  padding: 0 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  transition: padding 0.2s ease;
+}
+
+nav.scrolled .logo {
+  padding: 0;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: padding 0.2s, background-color 0.2s, color 0.2s;
+}
+
+nav.scrolled .nav-link {
+  padding: 4px 8px;
+}
+
+.nav-link:hover{
+  background-color: #3ea921;
+  color: white;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+/* DESKTOP ≥ 769px */
+
+@media (min-width: 769px) {
+  nav .menu{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin-left: 15px;
+  }
+}
+
+/* MOBILE ≤ 768px */
+
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 8px;
+    gap: 0;
+  }
+
+  nav.nav-open .menu {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+  }
+
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: #333;
+    border-radius: 1px;
+  }
+
+  nav .menu {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  nav .menu li {
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  nav .menu .nav-link {
+    display: block;
+    padding: 10px 0;
+  }
+}
+
+/* NAGŁÓWEK */
+.naglowek-sec{
+    background-color: #129301;
+    height: 90px;
+    display: flex;
+    color: white;
+    position: relative;
+}
+
+.naglowek-sec h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 30px 50px;
+    margin: 0;
+}
+
+/* ============ INDEX.HTML I ELEMENTY WSPÓLNE ============ */
+/* layout*/
+.layout{
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* sidebar */
+.produkty-wrapper {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.produkty-sidebar {
+  flex: 0 0 250px;
+  border-right: 1px solid #ccc;
+}
+
+.produkty-sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.produkty-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.produkty-sidebar li {
+  margin-bottom: 10px;
+}
+
+.produkty-sidebar a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.produkty-sidebar a:hover {
+  color: #41a921;
+}
+
+.produkty-sidebar a.active {
+  color: #21a921;
+  font-weight: bold;
+  border-left: 3px solid #43a921;
+  padding-left: 7px;
+}
+
+/* lista produktów (zdjęcia) i główna część strony */
+.content {
+  flex: 1;
+}
+
+.produkty-opis {
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.produkty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.produkt-box {
+  text-align: center;
+}
+
+.produkt-box img {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.produkt-box img:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #555;
+}
+
+.produkt-box figcaption {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #222;
+}
+
+/* katalog */
+.katalog-sec {
+  background-color: #f8f8f8;
+  border-top: 4px solid #4ca921;
+  padding: 20px;
+  max-width: 900px;
+  width:100%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pobierz-btn {
+  background-color: #31a921;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.pobierz-btn:hover {
+  background-color: #019359;
+}
+
+/* czerwony pogrubiony tekst */
+.wazne-info{
+  font-weight: bold;
+  color:red;
+}
+
+/* ============ OBROBKI-BLACHARSKIE.HTML ============ */
+.obrobki-imgi{
+  display:flex;
+  gap:20px;
+  padding:20px 40px;
+}
+
+.obrobki-imgi img{
+  width: 300px;
+  height: auto;
+}
+
+/* ============ KANALY-KSZTALTKI-PROSTOKATNE.HTML I RESZTA ELEMENTÓW WSPÓLNYCH ============ */
+.kanaly-sec h2{
+  text-align: center;
+}
+
+p.smaller{
+  font-size:14px;
+}
+
+.kanaly-sekcja{
+  padding:20px 0;
+}
+
+.kanaly-sekcja img{
+  display:block;
+  width:850px;
+  height:auto;
+  margin: 0 auto;
+}
+
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.produkty-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  background: #fff;
+  margin: 1em 0;
+}
+
+.produkty-tabela th, .produkty-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.produkty-tabela thead th.bomusze{
+  color:#333;
+  font-weight: normal;
+}
+
+.produkty-tabela thead th {
+  color: #fff;
+  font-weight: bold;
+}
+
+.niebieski{
+  background-color: #259301;
+}
+
+.czerwony{
+  background-color: #21a96e;
+}
+
+.czerwony.kol{
+  color: #fff;
+  font-weight: bold;
+}
+
+.dane-kat{
+  margin-top: 40px;
+  padding: 0 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+}
+
+.dane-kat a {
+  margin:7px;
+  display: inline-block;
+}
+
+.dane-kat img{
+  width:auto;
+  height:300px;
+  transition: 0.3s ease;
+}
+
+.dane-kat img:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #555;
+}
+
+/* STOPKA */
+.stopka-wrapper {
+  background-color: #019303;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 40px 50px;
+  box-sizing: border-box;
+}
+
+.sekcja-stopki{
+  flex: 1 1 30%;
+  min-width: 250px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color:white;
+}
+
+.sekcja-stopki i {
+  margin-right: 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.sekcja-stopki h3 {
+  margin-bottom: 40px;
+}
+
+.stopka-kolumna p {
+  margin-bottom: 10px;
+}
+
+.sekcja-stopki a {
+  color: white;
+  text-decoration: none;
+}
+
+.sekcja-stopki a:hover {
+  text-decoration: underline;
+}
+
+.the-very-bottom{
+    text-align: center;
+    background-color: #3aa921;
+    color: white;
+    padding: 10px 0;
+}
+
+/* cookies */
+
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: #0e5100;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.cookie-banner--content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cookie-banner--buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.cookie-banner--buttons button, .cookie-banner--buttons a {
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+#cookie-accept-all {
+  background: #48a921;
+  color: #fff;
+}
+
+#cookie-reject{
+  background-color: #333;
+  color:#fff;
+}
+
+#cookie-learn-more {
+  background: #019303;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* lightbox – wyłączenie Images x of y i responsywka */
+
+ .lb-number {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+    .lightbox {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+}
+
+/* =========== RESPONSYWKA ============ */
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .produkty-sidebar {
+    flex: 1 1 auto;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    order:2;
+  }
+
+  .content, .kanaly-sec {
+    width: 100%;
+    order:1;
+  }
+
+  .kanaly-sec img{
+    width:100%;
+  }
+
+  .produkty-tabela{
+    width:100%;
+  }
+
+  .katalog-sec{
+    width:80%;
+  }
+
+  .obrobki-imgi{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/*
+  Plik przetestowany i w pełni zgodny z CSS3 wg W3C Validator.
+  Data walidacji: 2025-12-26
+  Walidator: https://jigsaw.w3.org/css-validator/
+*/

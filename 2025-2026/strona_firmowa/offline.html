@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, nofollow">
+        <title>Strona chwilowo niedostępna – Firma</title>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="main.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!-- ikonki -->
+        <link rel="icon" href="https://placehold.co/16x16" type="image/x-icon">
+        <script>
+              function initMobileNav() {
+                const nav = document.querySelector("nav");
+                if (!nav) return;
+
+                const toggle = nav.querySelector("#nav-toggle");
+                if (!toggle) return;
+
+                toggle.addEventListener("click", () => {
+                const isOpen = nav.classList.toggle("nav-open");
+                toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+                    });
+                }
+                document.addEventListener("DOMContentLoaded", initMobileNav);
+        </script>
+    </head>
+
+    <body>
+        <div class="layout-wrapper">
+        <nav id="navbar">
+            <a href="index.html" class="logo">
+                <img src="https://placehold.co/191x70/transparent/000" alt="Logo Firmy" title="Strona główna">
+            </a>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Przełącz menu" aria-expanded="false" aria-controls="main-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="menu">
+                <li><a href="o-firmie.html" class="nav-link">O firmie</a></li>
+                <li><a href="produkty/index.html" class="nav-link">Produkty</a></li>
+                <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+                <li><a href="referencje.html" class="nav-link">Referencje</a></li>
+                <li><a href="kontakt.html" class="nav-link">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="naglowek-sec longnag">
+                    <h1>Strona chwilowo niedostępna</h1>
+            </section>
+
+            <section class="blad-404">
+                <h1>Strona chwilowo niedostępna</h1>
+                <p>Wystąpił nieoczekiwany błąd po stronie serwera lub sieci. Trwa identyfikacja lub usuwanie błędu.</p>
+                <p>Prosimy o cierpliwość i przepraszamy za utrudnienia.</p>
+            </section>
+        </main>
+
+        <footer>
+                <div class="stopka-wrapper">
+                    <div class="sekcja-stopki">
+                        <h3>FIRMA</h3>
+                        <p><i class="fa-solid fa-location-dot"></i><a href="https://maps.app.goo.gl/EpeBZxvYBCAM2tp36" target="_blank" rel="noopener noreferrer">Adres</a></p>
+                        <p><i class="fa-solid fa-phone"></i><a href="tel:+48000000000">00 000 00 00</a></p>
+                        <p><i class="fa-solid fa-envelope"></i><a href="mailto:biuro@firma.pl">biuro@firma.pl</a></p>
+                    </div>
+
+                    <div class="sekcja-stopki">
+                        <h3>GODZINY OTWARCIA</h3>
+                        <p>Pon-Pt: 00:00 - 00:00</p>
+                    </div>
+
+                    <div class="sekcja-stopki">
+                        <h3>SOCIAL MEDIA</h3>
+                        <p><i class="fa-brands fa-facebook"></i><a href="#" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+                        <p><i class="fa-brands fa-instagram"></i><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+                    </div>
+
+                </div>
+                <div class="the-very-bottom">
+                    <small>&copy; <span id="rok"></span> Firma. Wszelkie prawa zastrzeżone.</small>
+              </div>
+        </footer>
+        </div>
+        <script>
+            document.getElementById("rok").textContent = new Date().getFullYear();
+        </script>
+    </body>
+</html>
+
+<!--
+  Plik przetestowany i w pełni zgodny z HTML5 wg W3C Validator.
+  Data walidacji: 2025-12-26
+  Walidator: https://validator.w3.org
+-->
